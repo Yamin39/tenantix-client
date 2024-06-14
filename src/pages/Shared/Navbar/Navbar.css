@@ -1,0 +1,11 @@
+.nav-right .active {
+  border: none;
+}
+
+.navLink-container .active,
+.nav-right .active {
+  background-color: transparent !important;
+  color: black !important;
+  border-bottom: 3px solid #6c59f5;
+  border-radius: 0;
+}
