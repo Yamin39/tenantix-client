@@ -6,7 +6,7 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className="bg-[#e9e9e98c]">
+    <div className="bg-[#e9e9e98c] text-black">
       <RouterProvider router={router} />
     </div>
   </React.StrictMode>

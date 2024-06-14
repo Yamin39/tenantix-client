@@ -10,7 +10,7 @@ import slide3 from "../../../assets/images/slide3.jpg";
 
 const Banner = () => {
   return (
-    <div className="bg-white rounded-3xl p-10">
+    <div className="bg-[#ffffff67] shadow-lg rounded-3xl p-10">
       <div className="text-center w-full mb-10">
         <h1 className="text-[3rem] sm:text-[3.45rem] lg:text-[3.4rem] xl:text-[3.65rem] leading-[3.7rem] sm:leading-[4.5rem] font-bold mt-4">
           Modern Comfort in <br />
@@ -37,7 +37,7 @@ const Banner = () => {
           }}
           grabCursor={true}
           modules={[Autoplay, Pagination]}
-          className="xl:w-10/12 max-h-[30rem] shadow rounded-3xl"
+          className="xl:w-10/12 xl:mb-10 max-h-[30rem] shadow rounded-3xl"
         >
           <SwiperSlide className="h-[16rem] sm:h-auto">
             <img className="size-full object-cover" src={slide1} />
