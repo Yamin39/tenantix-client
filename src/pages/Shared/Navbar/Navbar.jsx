@@ -12,19 +12,14 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-primary-color hover:bg-transparent" to="/Apartment">
-          Apartment
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className="hover:text-primary-color hover:bg-transparent" to="/my-bookings">
-          My Bookings
+        <NavLink className="hover:text-primary-color hover:bg-transparent" to="/apartments">
+          Apartments
         </NavLink>
       </li>
     </>
   );
   return (
-    <nav>
+    <nav className="mb-8">
       <div className="py-3">
         <div className="navbar px-0 justify-between">
           <div>
@@ -51,7 +46,7 @@ const Navbar = () => {
             <ul className="hidden md:flex navLink-container menu menu-horizontal gap-1 2xl:gap-2 2xl:px-1 font-medium lg:text-base">{navLinks}</ul>
             <NavLink
               to="/login"
-              className="btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-md py-2"
+              className="btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-3xl py-2"
             >
               <FiLogIn className="text-lg" />
               Login
