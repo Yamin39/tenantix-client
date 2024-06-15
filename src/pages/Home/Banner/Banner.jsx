@@ -18,7 +18,7 @@ const Banner = () => {
         </h1>
         <p className="max-w-[21.875rem] mx-auto text-lg leading-8 mt-2">Experience the best apartment living with modern amenities.</p>
         <Link
-          to="/apartments"
+          to="/apartment"
           className="btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 text-base rounded-xl py-2 xl:px-7 mt-4"
         >
           Explore

@@ -10,7 +10,7 @@ const CouponCard = () => {
     if (isCopied) {
       const timer = setTimeout(() => {
         setIsCopied(false);
-      }, 1000);
+      }, 1100);
 
       return () => clearTimeout(timer);
     }
