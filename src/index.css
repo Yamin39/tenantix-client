@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 *::selection {
-  background-color: #6b59f5c0;
+  background-color: #6b59f57a;
   color: #010313;
 }
 
