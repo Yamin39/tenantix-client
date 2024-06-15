@@ -12,8 +12,8 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-primary-color hover:bg-transparent" to="/apartments">
-          Apartments
+        <NavLink className="hover:text-primary-color hover:bg-transparent" to="/apartment">
+          Apartment
         </NavLink>
       </li>
     </>
