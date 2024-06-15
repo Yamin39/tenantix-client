@@ -1,9 +1,9 @@
-.nav-right .active {
+.login-nav.active {
   border: none;
 }
 
 .navLink-container .active,
-.nav-right .active {
+.login-nav.active {
   background-color: transparent !important;
   color: black !important;
   border-bottom: 3px solid #6c59f5;

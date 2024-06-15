@@ -42,11 +42,11 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-          <div className="">
+          <div>
             <ul className="hidden md:flex navLink-container menu menu-horizontal gap-1 2xl:gap-2 2xl:px-1 font-medium lg:text-base">{navLinks}</ul>
             <NavLink
               to="/login"
-              className="btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-3xl py-2"
+              className="login-nav btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-3xl py-2"
             >
               <FiLogIn className="text-lg" />
               Login
