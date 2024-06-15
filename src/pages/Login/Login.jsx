@@ -32,6 +32,7 @@ const Login = () => {
           {/* email */}
           <input name="email" id="email" type="email" placeholder="Enter email" className="input py-7 input-bordered rounded-2xl" required />
         </div>
+        
         <div className="form-control">
           <label htmlFor="pass" className="label">
             <span className="label-text text-base font-semibold">Password</span>
