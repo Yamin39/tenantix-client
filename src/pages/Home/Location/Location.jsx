@@ -8,7 +8,7 @@ import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 
 const Location = () => {
   return (
-    <div className="mt-6 pb-12 md:pb-24">
+    <div className="mt-6">
       <SectionHeader title="Apartment’s location" desc="Prime location near parks, transit, shopping, and dining for your convenience."></SectionHeader>
 
       <div>

@@ -3,7 +3,7 @@ import logo from "/logo.png";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="mt-12 md:mt-24">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex gap-10 md:justify-between">
           <div className="mb-6 md:mb-0">
