@@ -1,9 +1,38 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const [passToggle, setPassToggle] = useState(false);
+  const { logIn } = useAuth();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // login
+    logIn(email, password)
+      .then((res) => {
+        console.log(res.user);
+        toast.success("Login Successful");
+        navigate(state || "/");
+      })
+      .catch((err) => {
+        console.error(err);
+        if (/invalid-credential/.test(err.message)) {
+          toast.error("Email or Password is wrong");
+        } else {
+          toast.error(err.message);
+        }
+      });
+  };
   return (
     <div className="max-w-[23.125rem] mx-auto">
       <div className="text-center mb-6">
@@ -17,8 +46,7 @@ const Login = () => {
 
       <div className="divider before:bg-gray-400 after:bg-gray-400 my-6">OR</div>
 
-      {/* Manual login */}
-      <form className="card-body p-0">
+      <form onSubmit={handleLogin} className="card-body p-0">
         <div className="form-control">
           <label htmlFor="email" className="label">
             <span className="label-text text-base font-semibold">EMAIL</span>
