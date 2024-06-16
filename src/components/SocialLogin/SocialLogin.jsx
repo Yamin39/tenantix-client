@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const SocialLogin = () => {
-  const { loginWithGoogle } = useContext(AuthContext);
+  const { loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
 

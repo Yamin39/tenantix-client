@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-  const { registerUser, updateUserNameAndPhoto, profileLoader, setProfileLoader, setLoading } = useContext(AuthContext);
+  const { registerUser, updateUserNameAndPhoto, profileLoader, setProfileLoader, setLoading } = useAuth();
   const [passToggle, setPassToggle] = useState(false);
   const navigate = useNavigate();
 
