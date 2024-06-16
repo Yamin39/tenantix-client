@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [passToggle, setPassToggle] = useState(false);
@@ -13,13 +13,7 @@ const Login = () => {
         </p>
       </div>
 
-      <div>
-        {/* Google login */}
-        <button className="btn w-full py-3 h-auto min-h-0 text-base rounded-2xl bg-[#d3d3d360]">
-          <FcGoogle className="text-xl" />
-          Continue with Google
-        </button>
-      </div>
+      <SocialLogin></SocialLogin>
 
       <div className="divider before:bg-gray-400 after:bg-gray-400 my-6">OR</div>
 
@@ -32,7 +26,7 @@ const Login = () => {
           {/* email */}
           <input name="email" id="email" type="email" placeholder="Enter email" className="input py-7 input-bordered rounded-2xl" required />
         </div>
-        
+
         <div className="form-control">
           <label htmlFor="pass" className="label">
             <span className="label-text text-base font-semibold">Password</span>
