@@ -14,9 +14,8 @@ const Navbar = () => {
         console.log(res);
         toast.success("Log out Successful");
       })
-      .then((err) => {
+      .catch((err) => {
         console.log(err);
-        toast.error(err.message);
       });
   };
 

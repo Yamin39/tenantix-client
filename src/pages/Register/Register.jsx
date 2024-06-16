@@ -3,11 +3,13 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const { registerUser, updateUserNameAndPhoto, profileLoader, setProfileLoader, setLoading } = useAuth();
   const [passToggle, setPassToggle] = useState(false);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,8 +48,20 @@ const Register = () => {
         updateUserNameAndPhoto(res.user, name, photoUrl)
           .then(() => {
             setProfileLoader(!profileLoader);
-            toast.success("Registration Successful");
-            navigate("/");
+            const userInfo = {
+              name: name,
+              photoURL: photoUrl,
+              email: email,
+              role: "user",
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              console.log(res.data);
+              if (res.data.insertedId) {
+                console.log(res?.user);
+                toast.success("Registration Successful");
+                navigate("/");
+              }
+            });
           })
           .catch((error) => {
             console.log(error);
