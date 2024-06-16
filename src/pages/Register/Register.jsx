@@ -1,9 +1,71 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+  const { registerUser, updateUserNameAndPhoto, profileLoader, setProfileLoader, setLoading } = useContext(AuthContext);
   const [passToggle, setPassToggle] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const photoUrl = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // verifications
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error("Password Length must be at least 6 character");
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password should contain at least a Lowercase letter");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password should contain at least an Uppercase letter");
+      return;
+    }
+
+    // register
+    registerUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        updateUserNameAndPhoto(res.user, name, photoUrl)
+          .then(() => {
+            setProfileLoader(!profileLoader);
+            toast.success("Registration Successful");
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error(error?.message);
+          });
+      })
+      .catch((err) => {
+        const error = err.message;
+        console.log(error);
+        if (/email-already-in-use/.test(error)) {
+          toast.error("Email already in use");
+        } else {
+          toast.error(error);
+        }
+        setLoading(false);
+      });
+  };
+
   return (
     <div className="max-w-[37.5rem] mx-auto">
       <div className="text-center mb-6">
@@ -23,8 +85,7 @@ const Register = () => {
 
       <div className="divider before:bg-gray-400 after:bg-gray-400 my-6">OR</div>
 
-      {/* Manual login */}
-      <form className="card-body p-0">
+      <form onSubmit={handleSubmit} className="card-body p-0">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="flex-grow form-control">
             <label htmlFor="name" className="label">
