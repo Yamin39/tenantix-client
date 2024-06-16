@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -6,14 +7,32 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ApartmentCard = ({ room }) => {
   const { apartment_image, floor_no, block_name, apartment_no, rent } = room;
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const axiosSecure = useAxiosSecure();
 
+  const { data: isRequested } = useQuery({
+    queryKey: ["isRequested"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/agreements?email=${user.email}`);
+      return res.data.isRequested;
+    },
+  });
+
   const handleAgreement = () => {
     if (!user) {
       return navigate("/login", { state: pathname });
+    }
+
+    if (isRequested) {
+      Swal.fire({
+        title: "Not allowed!",
+        text: "You have already requested for an apartment room. Request for multiple apartments is not allowed.",
+        icon: "error",
+      });
+      return;
     }
 
     const agreementInfo = {
@@ -60,8 +79,9 @@ const ApartmentCard = ({ room }) => {
       </div>
 
       <div className="p-6 pt-0">
+        {/* rent */}
         <h6 className="text-2xl text-primary-color mt-2 font-semibold">
-          {/* rent */}${rent}/<span className="text-lg text-gray-500">month</span>
+          ${rent}/<span className="text-lg text-gray-500">month</span>
         </h6>
 
         <div className="rounded-3xl p-2 mt-4 mb-6 bg-[#6b59f546]">
