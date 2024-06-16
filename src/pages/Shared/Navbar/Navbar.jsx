@@ -1,9 +1,25 @@
+import toast from "react-hot-toast";
 import { FiLogIn } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import "./Navbar.css";
 import logo from "/logo.png";
 
 const Navbar = () => {
+  const { user, loading, logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => {
+        console.log(res);
+        toast.success("Log out Successful");
+      })
+      .then((err) => {
+        console.log(err);
+        toast.error(err.message);
+      });
+  };
+
   const navLinks = (
     <>
       <li>
@@ -44,13 +60,47 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="hidden md:flex navLink-container menu menu-horizontal gap-1 2xl:gap-2 2xl:px-1 font-medium lg:text-base">{navLinks}</ul>
-            <NavLink
-              to="/login"
-              className="login-nav btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-3xl py-2"
-            >
-              <FiLogIn className="text-lg" />
-              Login
-            </NavLink>
+            {loading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              <>
+                {user ? (
+                  <div className="flex gap-3 justify-center items-center">
+                    <div className="dropdown dropdown-bottom dropdown-end">
+                      <div tabIndex={0} role="button" className="bg-slate-200 rounded-full cursor-pointer">
+                        <img className="size-8 2xl:size-10 rounded-full object-cover" src={user?.photoURL} alt="User" />
+                      </div>
+                      <ul tabIndex={0} className="dropdown-content w-56 z-[1] menu p-4 gap-4 shadow bg-base-100 rounded-box">
+                        <li className="text-gray-500 mt-2 text-center" title="User name">
+                          {user?.displayName || "Name not found!"}
+                        </li>
+                        <li>
+                          <Link to="/dashboard" className="btn">
+                            Dashboard
+                          </Link>
+                        </li>
+                        <li>
+                          <button
+                            onClick={handleLogOut}
+                            className="btn h-auto min-h-0 btn-error rounded-md text-xs 2xl:text-base bg-secondary-color text-white py-2 xl:px-7  hover:bg-red-600"
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className="login-nav btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-3xl py-2"
+                  >
+                    <FiLogIn className="text-lg" />
+                    Login
+                  </NavLink>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>
