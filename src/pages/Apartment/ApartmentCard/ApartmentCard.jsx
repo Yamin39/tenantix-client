@@ -1,7 +1,57 @@
 import PropTypes from "prop-types";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ApartmentCard = ({ room }) => {
   const { apartment_image, floor_no, block_name, apartment_no, rent } = room;
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const axiosSecure = useAxiosSecure();
+
+  const handleAgreement = () => {
+    if (!user) {
+      return navigate("/login", { state: pathname });
+    }
+
+    const agreementInfo = {
+      user_name: user?.displayName,
+      user_email: user?.email,
+      floor_no,
+      block_name,
+      apartment_no,
+      rent,
+      request_date: new Date(),
+      status: "pending",
+    };
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are allowed to apply for only one apartment",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(agreementInfo);
+
+        axiosSecure.post("/agreements", agreementInfo).then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "Success!",
+              text: "Agreement request sent successfully.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div className="bg-white shadow-md rounded-3xl">
@@ -33,7 +83,10 @@ const ApartmentCard = ({ room }) => {
           </ul>
         </div>
 
-        <button className="w-full btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-2xl py-3">
+        <button
+          onClick={handleAgreement}
+          className="w-full btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 lg:text-base rounded-2xl py-3"
+        >
           Agreement
         </button>
       </div>
