@@ -2,11 +2,13 @@ import toast from "react-hot-toast";
 import { FiLogIn } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useUserRole from "../../../hooks/useUserRole";
 import "./Navbar.css";
 import logo from "/logo.png";
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
+  const { userRole, userRoleLoading } = useUserRole();
 
   const handleLogOut = () => {
     logOut()
@@ -73,11 +75,17 @@ const Navbar = () => {
                         <li className="text-gray-500 mt-2 text-center" title="User name">
                           {user?.displayName || "Name not found!"}
                         </li>
-                        <li>
-                          <Link to="/dashboard" className="btn">
-                            Dashboard
-                          </Link>
-                        </li>
+                        {userRoleLoading ? (
+                          <div className="w-fit mx-auto">
+                            <span className="loading loading-spinner"></span>
+                          </div>
+                        ) : (
+                          <li>
+                            <Link to={`/dashboard/${userRole}-profile`} className="btn">
+                              Dashboard
+                            </Link>
+                          </li>
+                        )}
                         <li>
                           <button
                             onClick={handleLogOut}

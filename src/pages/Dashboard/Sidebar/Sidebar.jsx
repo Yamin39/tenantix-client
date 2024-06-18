@@ -5,7 +5,7 @@ import { GrAnnounce } from "react-icons/gr";
 import { IoPeopleOutline } from "react-icons/io5";
 import { MdHistory } from "react-icons/md";
 import { PiBuildingApartment } from "react-icons/pi";
-import { RiCoupon3Line, RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiCoupon3Line, RiMenu3Fill, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
 import useUserRole from "../../../hooks/useUserRole";
 import "./Sidebar.css";
@@ -16,11 +16,20 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="drawer lg:drawer-open">
+      <div className="drawer md:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-            Open Sidebar
+        <div className="drawer-content p-6 pb-0 flex items-center justify-between md:hidden">
+          <div>
+            <Link to="/" className="flex items-center gap-3">
+              <img src={logo} className="max-w-10 lg:max-w-12" />
+              <p className="font-semibold text-2xl lg:text-3xl">
+                <span className="text-primary-color">Tenant</span>ix
+              </p>
+            </Link>
+          </div>
+
+          <label htmlFor="my-drawer-2" className="btn drawer-button">
+            <RiMenu3Fill className="text-3xl" />
           </label>
         </div>
         <div className="drawer-side">
