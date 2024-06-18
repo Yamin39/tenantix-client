@@ -57,7 +57,6 @@ const Register = () => {
             axiosPublic.post("/users", userInfo).then((res) => {
               console.log(res.data);
               if (res.data.insertedId) {
-                console.log(res?.user);
                 toast.success("Registration Successful");
                 navigate("/");
               }

@@ -7,11 +7,13 @@ import { MdHistory } from "react-icons/md";
 import { PiBuildingApartment } from "react-icons/pi";
 import { RiCoupon3Line, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
+import useUserRole from "../../../hooks/useUserRole";
 import "./Sidebar.css";
 import logo from "/logo.png";
 
 const Sidebar = () => {
-  const userRole = "user";
+  const { userRole } = useUserRole();
+
   return (
     <>
       <div className="drawer lg:drawer-open">
