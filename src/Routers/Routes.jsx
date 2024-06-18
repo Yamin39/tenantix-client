@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../layout/Dashboard";
 import Root from "../layout/Root";
 import Apartment from "../pages/Apartment/Apartment";
+import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
@@ -15,16 +17,26 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/apartment",
+        path: "apartment",
         element: <Apartment></Apartment>,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login></Login>,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "user-profile",
+        element: <UserProfile></UserProfile>,
       },
     ],
   },
