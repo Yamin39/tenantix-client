@@ -33,7 +33,11 @@ const Apartment = () => {
     }
   };
 
-  const { data: rooms = [], isPending } = useQuery({
+  const {
+    data: rooms = [],
+    isPending,
+    refetch: refetchRooms,
+  } = useQuery({
     queryKey: ["apartmentRooms", currentPage, roomsPerPage],
     queryFn: async () => {
       const res = await axiosPublic.get(`/rooms?page=${currentPage}&size=${roomsPerPage}`);
@@ -51,7 +55,7 @@ const Apartment = () => {
 
           <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6">
             {rooms.map((room) => (
-              <ApartmentCard key={room._id} room={room}></ApartmentCard>
+              <ApartmentCard key={room._id} room={room} refetchRooms={refetchRooms}></ApartmentCard>
             ))}
           </div>
 

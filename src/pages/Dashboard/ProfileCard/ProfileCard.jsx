@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 const ProfileCard = ({ role }) => {
   const { user } = useAuth();
   return (
-    <div className="mx-auto max-w-96 text-center bg-white rounded-3xl p-10 mt-6">
+    <div className="w-full text-center bg-white rounded-3xl p-10 mt-6">
       <h3 className="font-semibold text-3xl">Profile details</h3>
       <ul className="mt-8 text-lg text-[#6b6b6b]">
         <li>
@@ -13,8 +13,12 @@ const ProfileCard = ({ role }) => {
           </div>
         </li>
         <li className="w-fit mx-auto rounded-full px-6 py-1 mt-4 bg-violet-200 text-violet-700">{role}</li>
-        <li className="mt-5">{user?.displayName}</li>
-        <li className="mt-2">{user?.email}</li>
+        <li className="mt-5" title="Name">
+          {user?.displayName}
+        </li>
+        <li className="mt-2" title="Email">
+          {user?.email}
+        </li>
       </ul>
     </div>
   );

@@ -1,5 +1,4 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
@@ -34,7 +33,6 @@ const useAxiosSecure = () => {
         logOut()
           .then((res) => {
             console.log(res);
-            toast.error("Please log in again!");
           })
           .catch((err) => {
             console.log(err);

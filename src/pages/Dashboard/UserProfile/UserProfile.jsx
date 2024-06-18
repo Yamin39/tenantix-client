@@ -1,11 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import moment from "moment";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useUserRole from "../../../hooks/useUserRole";
 import AgreementInfo from "../AgreementInfo/AgreementInfo";
+import DashboardGreet from "../DashboardGreet/DashboardGreet";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
 const UserProfile = () => {
+  const { userRole } = useUserRole();
+  const navigate = useNavigate();
+
+  if (userRole !== "user") {
+    navigate(-1);
+  }
+
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -22,12 +31,11 @@ const UserProfile = () => {
 
   return (
     <div className="p-6">
-      <div className="bg-white rounded-3xl p-6">
-        <h3 className="font-semibold text-2xl">Welcome, {user?.displayName?.split(" ")[0]}</h3>
-        <p className="text-gray-400">{moment().format("dddd, MMM DD")}</p>
-      </div>
+      <DashboardGreet></DashboardGreet>
 
-      <ProfileCard role="User"></ProfileCard>
+      <div className="min-w-96 max-w-[31.25rem] mx-auto">
+        <ProfileCard role="User"></ProfileCard>
+      </div>
 
       <AgreementInfo agreement={agreement}></AgreementInfo>
     </div>
