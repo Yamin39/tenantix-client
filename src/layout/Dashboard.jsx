@@ -7,7 +7,7 @@ const Dashboard = () => {
   const { userRoleLoading } = useUserRole();
   return (
     <div className="flex flex-col md:flex-row">
-      <div>
+      <div className="flex">
         <Sidebar></Sidebar>
       </div>
       <div className="flex-grow">

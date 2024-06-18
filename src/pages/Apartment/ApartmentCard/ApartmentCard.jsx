@@ -6,18 +6,18 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ApartmentCard = ({ room }) => {
-  const { apartment_image, floor_no, block_name, apartment_no, rent } = room;
+  const { apartment_image, room_no, floor_no, block_name, apartment_no, rent } = room;
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const axiosSecure = useAxiosSecure();
 
-  const { data: isRequested } = useQuery({
+  const { data: isRequested, refetch } = useQuery({
     queryKey: ["isRequested"],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/agreements?email=${user.email}`);
-      return res.data.isRequested;
+      return res.data;
     },
   });
 
@@ -38,6 +38,7 @@ const ApartmentCard = ({ room }) => {
     const agreementInfo = {
       user_name: user?.displayName,
       user_email: user?.email,
+      room_no,
       floor_no,
       block_name,
       apartment_no,
@@ -66,6 +67,7 @@ const ApartmentCard = ({ room }) => {
               text: "Agreement request sent successfully.",
               icon: "success",
             });
+            refetch();
           }
         });
       }
@@ -89,6 +91,11 @@ const ApartmentCard = ({ room }) => {
             {/* floor no */}
             <li className="bg-[#e9e9e98c] px-4 py-2 rounded-xl">
               <span className="font-semibold">Floor no: </span> {floor_no}
+            </li>
+
+            {/* room no */}
+            <li className="bg-[#e9e9e98c] px-4 py-2 rounded-xl">
+              <span className="font-semibold">Room no: </span> {room_no}
             </li>
 
             {/* Block name */}

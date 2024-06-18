@@ -1,9 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import AgreementInfo from "../AgreementInfo/AgreementInfo";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
 const UserProfile = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: agreement = {} } = useQuery({
+    queryKey: ["agreement"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/agreements/${user.email}/confirmed`);
+      return res.data;
+    },
+  });
+
+  console.log(typeof agreement);
+
   return (
     <div className="p-6">
       <div className="bg-white rounded-3xl p-6">
@@ -12,6 +28,8 @@ const UserProfile = () => {
       </div>
 
       <ProfileCard role="User"></ProfileCard>
+
+      <AgreementInfo agreement={agreement}></AgreementInfo>
     </div>
   );
 };
