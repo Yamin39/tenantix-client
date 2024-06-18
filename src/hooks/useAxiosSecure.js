@@ -1,6 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
@@ -9,6 +9,7 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { logOut } = useAuth();
 
   axiosSecure.interceptors.request.use(
@@ -38,7 +39,7 @@ const useAxiosSecure = () => {
           .catch((err) => {
             console.log(err);
           });
-        navigate("/login");
+        navigate("/login", { state: pathname });
       }
 
       return Promise.reject(error);

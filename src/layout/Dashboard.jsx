@@ -6,22 +6,20 @@ import Sidebar from "../pages/Dashboard/Sidebar/Sidebar";
 const Dashboard = () => {
   const { userRoleLoading } = useUserRole();
   return (
-    <>
-      {userRoleLoading ? (
-        <div className="min-h-screen">
-          <Loading></Loading>
-        </div>
-      ) : (
-        <div className="flex">
-          <div>
-            <Sidebar></Sidebar>
+    <div className="flex">
+      <div>
+        <Sidebar></Sidebar>
+      </div>
+      <div className="flex-grow">
+        {userRoleLoading ? (
+          <div className="min-h-screen">
+            <Loading></Loading>
           </div>
-          <div className="flex-grow">
-            <Outlet></Outlet>
-          </div>
-        </div>
-      )}
-    </>
+        ) : (
+          <Outlet></Outlet>
+        )}
+      </div>
+    </div>
   );
 };
 

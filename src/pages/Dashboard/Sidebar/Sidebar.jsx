@@ -12,7 +12,7 @@ import "./Sidebar.css";
 import logo from "/logo.png";
 
 const Sidebar = () => {
-  const { userRole } = useUserRole();
+  const { userRole, userRoleLoading } = useUserRole();
 
   return (
     <>
@@ -33,87 +33,95 @@ const Sidebar = () => {
               </Link>
             </div>
 
-            {/* user */}
-            {userRole === "user" && (
+            {userRoleLoading ? (
+              <div className="min-h-20 flex justify-center items-center">
+                <span className="loading loading-spinner loading-lg"></span>
+              </div>
+            ) : (
               <>
-                <li>
-                  <NavLink to="/dashboard/user-profile">
-                    <CgProfile className="text-base" />
-                    My Profile
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/announcements">
-                    <GrAnnounce className="text-base" />
-                    Announcements
-                  </NavLink>
-                </li>
-              </>
-            )}
+                {/* user */}
+                {userRole === "user" && (
+                  <>
+                    <li>
+                      <NavLink to="/dashboard/user-profile">
+                        <CgProfile className="text-base" />
+                        My Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/announcements">
+                        <GrAnnounce className="text-base" />
+                        Announcements
+                      </NavLink>
+                    </li>
+                  </>
+                )}
 
-            {/* member */}
-            {userRole === "member" && (
-              <>
-                <li>
-                  <NavLink to="/dashboard/member-profile">
-                    <CgProfile className="text-base" />
-                    My Profile
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/make-payment">
-                    <RiMoneyDollarCircleLine className="text-base" />
-                    Make payment
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/payment-history">
-                    <MdHistory className="text-base" />
-                    Payment History
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/announcements">
-                    <GrAnnounce className="text-base" />
-                    Announcements
-                  </NavLink>
-                </li>
-              </>
-            )}
+                {/* member */}
+                {userRole === "member" && (
+                  <>
+                    <li>
+                      <NavLink to="/dashboard/member-profile">
+                        <CgProfile className="text-base" />
+                        My Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/make-payment">
+                        <RiMoneyDollarCircleLine className="text-base" />
+                        Make payment
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/payment-history">
+                        <MdHistory className="text-base" />
+                        Payment History
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/announcements">
+                        <GrAnnounce className="text-base" />
+                        Announcements
+                      </NavLink>
+                    </li>
+                  </>
+                )}
 
-            {/* admin */}
-            {userRole === "admin" && (
-              <>
-                <li>
-                  <NavLink to="/dashboard/admin-profile">
-                    <CgProfile className="text-base" />
-                    Admin Profile
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/manage-members">
-                    <IoPeopleOutline className="text-base" />
-                    Manage Members
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/make-announcements">
-                    <GrAnnounce className="text-base" />
-                    Make Announcement
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/agreement-requests">
-                    <GoChecklist className="text-base" />
-                    Agreement Requests
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/manage-coupons">
-                    <RiCoupon3Line className="text-base" />
-                    Manage Coupons
-                  </NavLink>
-                </li>
+                {/* admin */}
+                {userRole === "admin" && (
+                  <>
+                    <li>
+                      <NavLink to="/dashboard/admin-profile">
+                        <CgProfile className="text-base" />
+                        Admin Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/manage-members">
+                        <IoPeopleOutline className="text-base" />
+                        Manage Members
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/make-announcements">
+                        <GrAnnounce className="text-base" />
+                        Make Announcement
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/agreement-requests">
+                        <GoChecklist className="text-base" />
+                        Agreement Requests
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/manage-coupons">
+                        <RiCoupon3Line className="text-base" />
+                        Manage Coupons
+                      </NavLink>
+                    </li>
+                  </>
+                )}
               </>
             )}
 
