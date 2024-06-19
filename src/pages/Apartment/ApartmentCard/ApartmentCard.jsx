@@ -47,6 +47,7 @@ const ApartmentCard = ({ room, refetchRooms }) => {
       floor_no,
       block_name,
       apartment_no,
+      apartmentRoom_id: _id,
       rent,
       request_date: new Date(),
       status: "pending",

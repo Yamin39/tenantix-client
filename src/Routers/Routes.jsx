@@ -3,6 +3,7 @@ import Dashboard from "../layout/Dashboard";
 import Root from "../layout/Root";
 import Apartment from "../pages/Apartment/Apartment";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
+import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AdminProfile></AdminProfile>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-members",
+        element: (
+          <AdminRoute>
+            <ManageMembers></ManageMembers>
           </AdminRoute>
         ),
       },

@@ -6,7 +6,7 @@ import Sidebar from "../pages/Dashboard/Sidebar/Sidebar";
 const Dashboard = () => {
   const { userRoleLoading } = useUserRole();
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col lg:flex-row">
       <div className="flex">
         <Sidebar></Sidebar>
       </div>

@@ -16,9 +16,9 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="z-50 drawer md:drawer-open">
+      <div className="z-50 drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content p-6 pb-0 flex items-center justify-between md:hidden">
+        <div className="drawer-content p-6 pb-0 flex items-center justify-between lg:hidden">
           <div>
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} className="max-w-10 lg:max-w-12" />
