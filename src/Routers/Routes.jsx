@@ -5,6 +5,7 @@ import Apartment from "../pages/Apartment/Apartment";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
 import Announcements from "../pages/Dashboard/Announcements/Announcements";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
+import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
 import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
@@ -78,6 +79,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <MakeAnnouncement></MakeAnnouncement>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-coupons",
+        element: (
+          <AdminRoute>
+            <ManageCoupons></ManageCoupons>
           </AdminRoute>
         ),
       },

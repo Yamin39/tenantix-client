@@ -22,7 +22,7 @@ const UserProfile = () => {
     queryKey: ["agreement"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/agreements/${user.email}/confirmed`);
+      const res = await axiosSecure.get(`/agreements/${user.email}/checked`);
       return res.data;
     },
   });
