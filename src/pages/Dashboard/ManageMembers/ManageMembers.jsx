@@ -43,7 +43,7 @@ const ManageMembers = () => {
   };
   return (
     <>
-      <div className="p-1 sm:p-6">
+      <div className="p-1 sm:p-6 min-h-screen">
         <div className="bg-white rounded-3xl p-3 pb-8">
           <div className="p-6 rounded-3xl bg-[#e9e9e98c]">
             <h3 className="font-semibold text-2xl">Manage members</h3>

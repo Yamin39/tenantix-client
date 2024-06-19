@@ -3,6 +3,7 @@ import Dashboard from "../layout/Dashboard";
 import Root from "../layout/Root";
 import Apartment from "../pages/Apartment/Apartment";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
+import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageMembers></ManageMembers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "make-announcement",
+        element: (
+          <AdminRoute>
+            <MakeAnnouncement></MakeAnnouncement>
           </AdminRoute>
         ),
       },

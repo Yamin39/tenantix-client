@@ -112,7 +112,7 @@ const Sidebar = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/dashboard/make-announcements">
+                      <NavLink to="/dashboard/make-announcement">
                         <GrAnnounce className="text-base" />
                         Make Announcement
                       </NavLink>
