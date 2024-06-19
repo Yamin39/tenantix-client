@@ -2,6 +2,7 @@ import { FiEdit } from "react-icons/fi";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCoupon from "../../../hooks/useCoupon";
+import AddCouponsModal from "./AddCouponsModal";
 
 const ManageCoupons = () => {
   const { coupons, couponLoading, refetchCoupons } = useCoupon();
@@ -64,9 +65,15 @@ const ManageCoupons = () => {
                         <dialog id={`${coupon._id}-couponUpdateModal`} className="modal">
                           <div className="modal-box">
                             <form method="dialog">
-                              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                              <button
+                                onClick={() => document.getElementById(`${coupon._id}-couponUpdateForm`).reset()}
+                                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                              >
+                                ✕
+                              </button>
                             </form>
                             <form
+                              id={`${coupon._id}-couponUpdateForm`}
                               onSubmit={(e) => {
                                 e.preventDefault();
                                 const updatedAvailability = e.target.availability.value === "true";
@@ -106,6 +113,8 @@ const ManageCoupons = () => {
             </table>
           </div>
         </div>
+
+        <AddCouponsModal refetchCoupons={refetchCoupons}></AddCouponsModal>
       </div>
     </>
   );
