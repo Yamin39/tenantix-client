@@ -3,6 +3,7 @@ import Dashboard from "../layout/Dashboard";
 import Root from "../layout/Root";
 import Apartment from "../pages/Apartment/Apartment";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
+import Announcements from "../pages/Dashboard/Announcements/Announcements";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "user-profile",
         element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "announcements",
+        element: <Announcements></Announcements>,
       },
 
       // member routes

@@ -27,8 +27,6 @@ const UserProfile = () => {
     },
   });
 
-  console.log(typeof agreement);
-
   return (
     <div className="p-6">
       <DashboardGreet></DashboardGreet>
