@@ -1,4 +1,6 @@
+import toast from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
+import { CiLogout } from "react-icons/ci";
 import { FiHome } from "react-icons/fi";
 import { GoChecklist } from "react-icons/go";
 import { GrAnnounce } from "react-icons/gr";
@@ -6,13 +8,28 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { MdHistory } from "react-icons/md";
 import { PiBuildingApartment } from "react-icons/pi";
 import { RiCoupon3Line, RiMenu3Fill, RiMoneyDollarCircleLine } from "react-icons/ri";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import useUserRole from "../../../hooks/useUserRole";
 import "./Sidebar.css";
 import logo from "/logo.png";
 
 const Sidebar = () => {
+  const { logOut } = useAuth();
   const { userRole, userRoleLoading } = useUserRole();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    navigate("/");
+    logOut()
+      .then((res) => {
+        console.log(res);
+        toast.success("Log out Successful");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -147,6 +164,15 @@ const Sidebar = () => {
                 <PiBuildingApartment className="text-base" />
                 Apartments
               </NavLink>
+            </li>
+
+            {/* others */}
+            <div className="divider before:bg-gray-400 after:bg-gray-400"></div>
+            <li>
+              <button className="bg-red-500 hover:bg-red-600" onClick={handleLogOut}>
+                <CiLogout className="text-base" />
+                Logout
+              </button>
             </li>
           </ul>
         </div>
