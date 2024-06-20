@@ -12,7 +12,9 @@ const ProfileCard = ({ role }) => {
             <img className="size-full rounded-full" src={user?.photoURL} alt="Profile pic" />
           </div>
         </li>
-        <li className="w-fit mx-auto rounded-full px-6 py-1 mt-4 bg-violet-200 text-violet-700">{role}</li>
+        <li className="w-fit mx-auto rounded-full px-6 py-1 mt-4 bg-violet-200 text-violet-700" title="Role">
+          {role}
+        </li>
         <li className="mt-5" title="Name">
           {user?.displayName}
         </li>

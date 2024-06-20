@@ -40,11 +40,11 @@ const AgreementRequests = () => {
     <div className="p-1 sm:p-6 min-h-screen">
       <div className="bg-white rounded-3xl p-3 pb-8">
         <div className="p-6 rounded-3xl bg-[#e9e9e98c]">
-          <h3 className="font-semibold text-2xl">Manage members</h3>
-          <p className="text-gray-500 mt-1">Efficiently manage all apartment members</p>
+          <h3 className="font-semibold text-2xl">Agreement requests</h3>
+          <p className="text-gray-500 mt-1">Review, approve, and manage all tenant rental agreement requests efficiently here</p>
         </div>
 
-        <h3 className="font-semibold text-2xl pt-5 pl-1 sm:pl-3 mb-2">All members</h3>
+        <h3 className="font-semibold text-2xl pt-5 pl-1 sm:pl-3 mb-2">All requests</h3>
 
         <div className="overflow-x-auto">
           <table className="w-full table-xs sm:table-md md:table-lg lg:table table-zebra">

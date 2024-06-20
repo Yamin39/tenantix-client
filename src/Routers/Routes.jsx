@@ -8,11 +8,13 @@ import Announcements from "../pages/Dashboard/Announcements/Announcements";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
 import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
+import MemberProfile from "../pages/Dashboard/MemberProfile/MemberProfile";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
+import MemberRoute from "./MemberRoute";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
       },
 
       // member routes
+      {
+        path: "member-profile",
+        element: (
+          <MemberRoute>
+            <MemberProfile></MemberProfile>
+          </MemberRoute>
+        ),
+      },
 
       // admin routes
       {
