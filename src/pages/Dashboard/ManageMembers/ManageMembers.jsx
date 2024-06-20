@@ -17,7 +17,7 @@ const ManageMembers = () => {
     },
   });
 
-  const handleRemove = (id) => {
+  const handleRemove = (email) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,7 +28,7 @@ const ManageMembers = () => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/${id}`, { role: "user" }).then((data) => {
+        axiosSecure.patch(`/users/${email}`, { role: "user" }).then((data) => {
           if (data.data.modifiedCount) {
             Swal.fire({
               title: "Removed!",
@@ -69,7 +69,7 @@ const ManageMembers = () => {
                       <td style={{ wordBreak: "break-all" }}>{member?.name}</td>
                       <td style={{ wordBreak: "break-all" }}>{member?.email}</td>
                       <td>
-                        <button onClick={() => handleRemove(member._id)} className="btn btn-sm btn-error text-white">
+                        <button onClick={() => handleRemove(member.email)} className="btn btn-sm btn-error text-white">
                           Remove
                         </button>
                       </td>

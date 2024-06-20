@@ -3,6 +3,7 @@ import Dashboard from "../layout/Dashboard";
 import Root from "../layout/Root";
 import Apartment from "../pages/Apartment/Apartment";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
+import AgreementRequests from "../pages/Dashboard/AgreementRequests/AgreementRequests";
 import Announcements from "../pages/Dashboard/Announcements/Announcements";
 import MakeAnnouncement from "../pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
@@ -87,6 +88,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageCoupons></ManageCoupons>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "agreement-requests",
+        element: (
+          <AdminRoute>
+            <AgreementRequests></AgreementRequests>
           </AdminRoute>
         ),
       },
