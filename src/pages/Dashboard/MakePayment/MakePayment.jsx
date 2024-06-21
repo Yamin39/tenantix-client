@@ -18,7 +18,7 @@ const MakePayment = () => {
     },
   });
 
-  const { user_name, user_email, room_no, floor_no, block_name, apartment_no, rent } = agreement;
+  const { _id, user_email, room_no, floor_no, block_name, apartment_no, rent } = agreement;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,8 +30,7 @@ const MakePayment = () => {
     }
 
     const paymentData = {
-      user_name,
-      user_email,
+      room_id: _id,
       room_no,
       floor_no,
       block_name,

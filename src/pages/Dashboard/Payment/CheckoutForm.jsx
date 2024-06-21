@@ -2,20 +2,29 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const CheckoutForm = ({ paymentData }) => {
-  const [error, setError] = useState("");
+const CheckoutForm = ({ paymentData, discount }) => {
   const [clientSecret, setClientSecret] = useState("");
-  const [transactionId, setTransactionId] = useState("");
+  const [totalPrice, setTotalPrice] = useState(paymentData.rent);
+  const navigate = useNavigate();
   const stripe = useStripe();
   const { user } = useAuth();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  //   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
-  const totalPrice = paymentData.rent;
+  const { room_id, room_no, floor_no, block_name, apartment_no, month } = paymentData;
+
+  console.log(room_id);
+
+  useEffect(() => {
+    if (discount) {
+      setTotalPrice(totalPrice - discount);
+    }
+  }, [discount]);
 
   console.log(totalPrice);
 
@@ -49,10 +58,8 @@ const CheckoutForm = ({ paymentData }) => {
     if (error) {
       console.log("payment error", error);
       toast.error(error?.message);
-      setError(error?.message);
     } else {
       console.log("payment method", paymentMethod);
-      setError("");
     }
 
     // confirm payment
@@ -71,9 +78,33 @@ const CheckoutForm = ({ paymentData }) => {
     } else {
       console.log("Payment Intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        toast.success(`Payment success! Transaction Id: ${paymentIntent.id}`);
         console.log("Transaction Id: ", paymentIntent.id);
-        setTransactionId(paymentIntent.id);
+
+        const payment = {
+          member_name: user.name,
+          member_email: user.email,
+          date: new Date(),
+          transactionId: paymentIntent.id,
+          paid_amount: totalPrice,
+          room_id,
+          room_no,
+          floor_no,
+          block_name,
+          apartment_no,
+          paid_month: month,
+        };
+
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("Payment saved", res.data);
+
+        if (res.data?.insertedId) {
+          Swal.fire({
+            title: "Success",
+            text: "Payment success!",
+            icon: "success",
+          });
+          navigate("/dashboard/payment-history");
+        }
       }
     }
   };
@@ -96,8 +127,12 @@ const CheckoutForm = ({ paymentData }) => {
           },
         }}
       />
-      <button className="btn btn-accent mt-6" type="submit" disabled={!stripe || !clientSecret}>
-        Pay
+      <button
+        className="btn bg-green-500 text-white hover:bg-green-500 hover:brightness-90 mt-6 h-auto min-h-0 text-base rounded-xl py-3 xl:px-7"
+        type="submit"
+        disabled={!stripe || !clientSecret}
+      >
+        Pay ${totalPrice}
       </button>
     </form>
   );
@@ -105,6 +140,7 @@ const CheckoutForm = ({ paymentData }) => {
 
 CheckoutForm.propTypes = {
   paymentData: PropTypes.object,
+  discount: PropTypes.number,
 };
 
 export default CheckoutForm;
