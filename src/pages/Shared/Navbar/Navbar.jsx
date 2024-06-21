@@ -9,6 +9,19 @@ import logo from "/logo.png";
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
   const { userRole, userRoleLoading } = useUserRole();
+  // const [userRole, setUserRole] = useState([]);
+  // const [userRoleLoading, setUserRoleLoading] = useState(true);
+  // const axiosSecure = useAxiosSecure();
+  // const token = localStorage.getItem("access-token");
+
+  // useEffect(() => {
+  //   if (user?.email) {
+  //     axiosSecure.get(`/users/${user?.email}`).then((res) => {
+  //       setUserRole(res.data?.role);
+  //       setUserRoleLoading(false);
+  //     });
+  //   }
+  // }, [user?.email, token]);
 
   const handleLogOut = () => {
     logOut()
