@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className="flex">
         <Sidebar></Sidebar>
       </div>
-      <div className="flex-grow max-w-[1440px] mx-auto">
+      <div className="lg:flex-grow max-w-[1440px] mx-auto">
         {userRoleLoading ? (
           <div className="min-h-screen">
             <Loading></Loading>

@@ -11,6 +11,7 @@ import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
 import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
 import MemberProfile from "../pages/Dashboard/MemberProfile/MemberProfile";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -82,6 +83,14 @@ const router = createBrowserRouter([
         element: (
           <MemberRoute>
             <Payment></Payment>
+          </MemberRoute>
+        ),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <MemberRoute>
+            <PaymentHistory></PaymentHistory>
           </MemberRoute>
         ),
       },

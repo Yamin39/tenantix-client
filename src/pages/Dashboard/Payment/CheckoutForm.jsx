@@ -81,8 +81,8 @@ const CheckoutForm = ({ paymentData, discount }) => {
         console.log("Transaction Id: ", paymentIntent.id);
 
         const payment = {
-          member_name: user.name,
-          member_email: user.email,
+          member_name: user?.name,
+          member_email: user?.email,
           date: new Date(),
           transactionId: paymentIntent.id,
           paid_amount: totalPrice,
