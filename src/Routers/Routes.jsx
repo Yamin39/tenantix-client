@@ -10,6 +10,7 @@ import MakePayment from "../pages/Dashboard/MakePayment/MakePayment";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
 import ManageMembers from "../pages/Dashboard/ManageMembers/ManageMembers";
 import MemberProfile from "../pages/Dashboard/MemberProfile/MemberProfile";
+import Payment from "../pages/Dashboard/Payment/Payment";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
@@ -68,12 +69,19 @@ const router = createBrowserRouter([
           </MemberRoute>
         ),
       },
-
       {
         path: "make-payment",
         element: (
           <MemberRoute>
             <MakePayment></MakePayment>
+          </MemberRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <MemberRoute>
+            <Payment></Payment>
           </MemberRoute>
         ),
       },

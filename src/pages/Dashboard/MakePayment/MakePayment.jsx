@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MakePayment = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const { data: agreement = {} } = useQuery({
     queryKey: ["agreement"],
@@ -15,7 +18,31 @@ const MakePayment = () => {
     },
   });
 
-  const { user_email, room_no, floor_no, block_name, apartment_no, rent } = agreement;
+  const { user_name, user_email, room_no, floor_no, block_name, apartment_no, rent } = agreement;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const month = e.target.month.value;
+
+    if (month === "Select month") {
+      toast.error("Please select a month");
+      return;
+    }
+
+    const paymentData = {
+      user_name,
+      user_email,
+      room_no,
+      floor_no,
+      block_name,
+      apartment_no,
+      rent,
+      month,
+    };
+
+    // console.log(paymentData);
+    navigate("/dashboard/payment", { state: paymentData });
+  };
   return (
     <div className="p-6 min-h-screen">
       <div className="bg-white rounded-3xl p-3 pb-8">
@@ -26,7 +53,7 @@ const MakePayment = () => {
 
         <h3 className="font-semibold text-2xl pt-5 pl-1 sm:pl-3 mt-6 mb-2">Details</h3>
 
-        <form className="card-body pl-1 sm:pl-3 pt-0">
+        <form onSubmit={handleSubmit} className="card-body pl-1 sm:pl-3 pt-0">
           <div className="form-control">
             <label htmlFor="member_email" className="label">
               <span className="label-text text-base font-semibold">Member email</span>
@@ -112,7 +139,7 @@ const MakePayment = () => {
               <label className="label">
                 <span className="label-text text-base font-semibold">Month</span>
               </label>
-              <select className="select select-bordered">
+              <select name="month" className="select select-bordered" required>
                 <option disabled selected>
                   Select month
                 </option>
