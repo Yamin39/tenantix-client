@@ -1,3 +1,4 @@
+import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -22,6 +23,32 @@ const ManageCoupons = () => {
     });
   };
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/coupons/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Coupon deleted successfully.",
+              icon: "success",
+            });
+            refetchCoupons();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <>
       <div className="p-1 sm:p-6 min-h-screen">
@@ -41,7 +68,7 @@ const ManageCoupons = () => {
                   <th>Percentage</th>
                   <th>Description</th>
                   <th>Availability</th>
-                  <th>Edit</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
 
@@ -53,12 +80,18 @@ const ManageCoupons = () => {
                       <td>{coupon?.discount_percentage}</td>
                       <td>{coupon?.coupon_description}</td>
                       <td>{coupon?.availability ? "Available" : "Unavailable"}</td>
-                      <td>
+                      <td className="flex flex-col gap-2">
                         <button
                           onClick={() => document.getElementById(`${coupon._id}-couponUpdateModal`).showModal()}
                           className="btn bg-primary-color text-white hover:bg-primary-color hover:brightness-90 h-auto min-h-0 text-base rounded-xl py-2"
                         >
                           <FiEdit />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(coupon._id)}
+                          className="btn bg-red-500 text-white hover:bg-red-500 hover:brightness-90 h-auto min-h-0 text-base rounded-xl py-2"
+                        >
+                          <AiOutlineDelete />
                         </button>
 
                         {/* update modal */}
