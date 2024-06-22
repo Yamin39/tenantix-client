@@ -1,20 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
 const useUserRole = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useAuth();
-  // const token = localStorage.getItem("access-token");
-
-  const [token, setToken] = useState(localStorage.getItem("access-token"));
-
-  // console.log(token);
-
-  // console.log("!loading", !loading);
-  // console.log("!!user?.email", !!user?.email);
-  // console.log("!!token", !!token);
+  const token = localStorage.getItem("access-token");
 
   const {
     data: userRole = "",
@@ -31,20 +22,16 @@ const useUserRole = () => {
     },
   });
 
-  // useEffect to update token when it's set in localStorage
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setToken(localStorage.getItem("access-token"));
-    };
-
-    // Listen for changes in localStorage
-    window.addEventListener("storage", handleStorageChange);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  // // useEffect to update token when it's set in localStorage
+  // useEffect(() => {
+  //   const handleStorageChange = () => {
+  //     setToken(localStorage.getItem("access-token"));
+  //   };
+  //   window.addEventListener("storage", handleStorageChange);
+  //   return () => {
+  //     window.removeEventListener("storage", handleStorageChange);
+  //   };
+  // }, []);
 
   return { userRole, userRoleLoading, refetch };
 };

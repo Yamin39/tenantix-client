@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useUserRole from "../../../hooks/useUserRole";
 
 const ApartmentCard = ({ room, refetchRooms }) => {
   const { _id, apartment_image, room_no, floor_no, block_name, apartment_no, rent, availability } = room;
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const { userRole } = useUserRole();
 
   const { data: isRequested, refetch } = useQuery({
     queryKey: ["isRequested"],
@@ -24,6 +26,11 @@ const ApartmentCard = ({ room, refetchRooms }) => {
   const handleAgreement = () => {
     if (!user) {
       return navigate("/login");
+    }
+
+    if (userRole === "admin") {
+      toast.error("Admins are not allowed for agreements");
+      return;
     }
 
     if (isRequested) {
