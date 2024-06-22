@@ -15,6 +15,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
 import MemberRoute from "./MemberRoute";
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <NotFoundPage></NotFoundPage>,
     children: [
       {
         path: "/",
