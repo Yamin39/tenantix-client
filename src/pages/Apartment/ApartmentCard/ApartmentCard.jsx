@@ -72,7 +72,7 @@ const ApartmentCard = ({ room, refetchRooms }) => {
               if (data.data.modifiedCount) {
                 Swal.fire({
                   title: "Success!",
-                  text: "Agreement request sent successfully.",
+                  text: "Agreement request sent successfully! Please wait for admin approval.",
                   icon: "success",
                 });
                 refetch();

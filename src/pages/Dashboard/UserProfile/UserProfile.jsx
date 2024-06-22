@@ -8,7 +8,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   if (userRole !== "user") {
-    navigate(-1);
+    navigate("/");
   }
 
   return (

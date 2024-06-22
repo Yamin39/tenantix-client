@@ -40,7 +40,8 @@ const Payment = () => {
       return toast.error("This coupon is unavailable");
     }
 
-    setDiscount((discount_percentage / 100) * state.rent);
+    const discountCalc = (discount_percentage / 100) * state.rent;
+    setDiscount(discountCalc.toFixed(1));
     console.log(discount_percentage);
     toast.success("Coupon applied successfully");
     setDisableApplyBtn(true);

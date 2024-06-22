@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import ManageMemberTableRow from "./ManageMemberTableRow";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
@@ -17,30 +17,6 @@ const ManageMembers = () => {
     },
   });
 
-  const handleRemove = (email) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirm",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.patch(`/users/${email}`, { role: "user" }).then((data) => {
-          if (data.data.modifiedCount) {
-            Swal.fire({
-              title: "Removed!",
-              text: "Member role has been changed to user.",
-              icon: "success",
-            });
-            refetch();
-          }
-        });
-      }
-    });
-  };
   return (
     <>
       <div className="p-1 sm:p-6 min-h-screen">
@@ -65,15 +41,7 @@ const ManageMembers = () => {
               {!membersLoading && (
                 <tbody>
                   {members.map((member) => (
-                    <tr key={member._id} className="text-xs sm:text-base">
-                      <td style={{ wordBreak: "break-all" }}>{member?.name}</td>
-                      <td style={{ wordBreak: "break-all" }}>{member?.email}</td>
-                      <td>
-                        <button onClick={() => handleRemove(member.email)} className="btn btn-sm btn-error text-white">
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
+                    <ManageMemberTableRow key={member._id} member={member} refetch={refetch}></ManageMemberTableRow>
                   ))}
                 </tbody>
               )}
