@@ -115,7 +115,7 @@ const CheckoutForm = ({ paymentData, discount }) => {
         options={{
           style: {
             base: {
-              fontSize: "1rem",
+              fontSize: "16px",
               color: "#424770",
               "::placeholder": {
                 color: "#aab7c4",
