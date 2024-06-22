@@ -13,7 +13,7 @@ const MemberProfile = () => {
     queryKey: ["agreement"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/agreements/${user.email}/checked`);
+      const res = await axiosSecure.get(`/agreements-for-PaymentHistory/${user.email}`);
       return res.data;
     },
   });

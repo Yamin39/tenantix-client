@@ -36,6 +36,24 @@ const AgreementRequests = () => {
       }
     });
   };
+
+  const handleReject = (agreement_id, apartmentRoom_id) => {
+    axiosSecure.patch(`/rooms/${apartmentRoom_id}`, { availability: true }).then((data) => {
+      if (data.data.modifiedCount) {
+        axiosSecure.patch(`/reject-agreement/${agreement_id}`, { status: "checked" }).then((data) => {
+          if (data.data.modifiedCount) {
+            Swal.fire({
+              title: "Rejected!",
+              text: "Agreement rejected successfully.",
+              icon: "success",
+            });
+            refetchAgreements();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div className="p-1 sm:p-6 min-h-screen">
       <div className="bg-white rounded-3xl p-1 md:p-3 pb-8">
@@ -80,7 +98,10 @@ const AgreementRequests = () => {
                         <FaCheck />
                       </button>
 
-                      <button className="btn btn-xs bg-red-500 text-white hover:bg-red-500 hover:brightness-90 h-auto min-h-0 text-base rounded-xl py-2">
+                      <button
+                        onClick={() => handleReject(agreement._id, agreement?.apartmentRoom_id)}
+                        className="btn btn-xs bg-red-500 text-white hover:bg-red-500 hover:brightness-90 h-auto min-h-0 text-base rounded-xl py-2"
+                      >
                         <RxCross2 />
                       </button>
                     </td>

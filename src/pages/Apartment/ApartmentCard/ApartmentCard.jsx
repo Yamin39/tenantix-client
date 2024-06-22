@@ -18,7 +18,7 @@ const ApartmentCard = ({ room, refetchRooms }) => {
     queryKey: ["isRequested"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/agreements?email=${user.email}`);
+      const res = await axiosSecure.get(`/isRequested/${user.email}`);
       return res.data;
     },
   });
@@ -34,6 +34,7 @@ const ApartmentCard = ({ room, refetchRooms }) => {
     }
 
     if (isRequested) {
+      console.log(isRequested);
       Swal.fire({
         title: "Not allowed!",
         text: "You have already requested for an apartment room. Request for multiple apartments is not allowed.",

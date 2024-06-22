@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useUserRole from "../../../hooks/useUserRole";
 import DashboardGreet from "../DashboardGreet/DashboardGreet";
@@ -7,9 +8,11 @@ const UserProfile = () => {
   const { userRole } = useUserRole();
   const navigate = useNavigate();
 
-  if (userRole !== "user") {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (userRole !== "user") {
+      navigate("/");
+    }
+  }, [userRole]);
 
   return (
     <div className="p-6">

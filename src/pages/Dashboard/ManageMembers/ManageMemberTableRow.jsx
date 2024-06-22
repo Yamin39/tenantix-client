@@ -9,7 +9,7 @@ const ManageMemberTableRow = ({ member, refetch }) => {
   const { data: agreements = {} } = useQuery({
     queryKey: ["agreement"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/agreements`);
+      const res = await axiosSecure.get(`/agreements-to-removeMember`);
       return res.data;
     },
   });
