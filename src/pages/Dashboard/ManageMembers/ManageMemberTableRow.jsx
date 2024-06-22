@@ -6,16 +6,15 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const ManageMemberTableRow = ({ member, refetch }) => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: agreement = {} } = useQuery({
+  const { data: agreements = {} } = useQuery({
     queryKey: ["agreement"],
-    // enabled: !!member?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/agreements?email=${member?.email}`);
+      const res = await axiosSecure.get(`/agreements`);
       return res.data;
     },
   });
 
-  console.log(agreement);
+  console.log(agreements);
 
   const handleRemove = (email) => {
     Swal.fire({
@@ -28,6 +27,7 @@ const ManageMemberTableRow = ({ member, refetch }) => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
+        const agreement = agreements.find((agreement) => agreement.user_email === email);
         axiosSecure.patch(`/users/${email}`, { role: "user" }).then((data) => {
           if (data.data.modifiedCount) {
             axiosSecure.delete(`/agreements/${agreement?._id}`).then((res) => {

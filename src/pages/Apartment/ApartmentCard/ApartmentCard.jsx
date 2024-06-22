@@ -51,6 +51,7 @@ const ApartmentCard = ({ room, refetchRooms }) => {
       rent,
       request_date: new Date(),
       status: "pending",
+      isRejected: false,
     };
 
     Swal.fire({
