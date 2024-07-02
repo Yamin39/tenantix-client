@@ -1,30 +1,51 @@
 # Tenantix
 
-Welcome to Tenantix
+## Links
+[Live site link](https://tenantix.web.app/)
 
-## Live Site
+[Server side repo link](https://github.com/Yamin39/tenantix-server)
 
-live site URL: [Tenantix](https://tenantix.web.app/)
+## Overview
 
-## Admin credentials
+- **Project Concept**: Tenantix is a property management platform designed for landlords and tenants to manage rental properties, payments, and communications seamlessly.
+- **Problem Solved**: This project streamlines the management of rental properties, providing a central platform for communication, payment processing, and property management tasks.
+- **Technologies Used**: HTML, CSS, JavaScript, ReactJS, Firebase, Tailwind CSS, Daisy UI.
+- **Best Features**:
+  - Admins can control the agreements in the dashboard.
+  - Secure online rent payment processing.
+  - Admins can add, delete, and update the coupons.
 
-Admin Email: admin@tenantix.com
-Admin Password: 123456Aa
+## Setup Process
 
-## Features
+To run the project locally, follow these steps:
 
-Tenantix have many features. Such as,
+1. **Clone the repository**:
+```bash
+git clone https://github.com/Yamin39/tenantix-client.git
+```
 
-- User can Register and login to their account. They can also login with google.
-- Various rooms are available here.
-- Logged in users can send an agreement request.
-- Admins can accept and reject the agreements.
-- Users, Members and Admins can see essential details and operations on the dashboard.
-- Members can pay their monthly rents.
-- Members can see their payment history.
-- They can search to see their specific month payment info.
-- Members can use coupons for discount.
-- Anyone can easily see the coupons and copy the codes in home page.
-- Admins can add, delete and update the coupons.
-- Users and Members can see announcements.
-- Admins can create new announcements.
+2. **Navigate to the project directory**:
+```bash
+cd tenantix-client
+```
+
+3. **Install dependencies**:
+```bash
+npm install
+```
+
+4. **Add important credentials**: Create a .env.local file and add your Firebase credentials and Stripe publish key.
+```javascript
+VITE_APIKEY=yourAPIKEY
+VITE_AUTHDOMAIN=yourAUTHDOMAIN
+VITE_PROJECTID=yourPROJECTID
+VITE_STORAGEBUCKET=yourSTORAGEBUCKET
+VITE_MESSAGINGSENDERID=yourMESSAGINGSENDERID
+VITE_APPID=yourAPPID
+VITE_PAYMENT_GATEWAY_PK=yourStripePublishKey
+```
+
+5. **Run the project**:
+```bash
+npm run dev
+```
