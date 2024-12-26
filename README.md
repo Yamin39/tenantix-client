@@ -11,9 +11,13 @@
 - **Problem Solved**: This project streamlines the management of rental properties, providing a central platform for communication, payment processing, and property management tasks.
 - **Technologies Used**: HTML, CSS, JavaScript, ReactJS, Firebase, Tailwind CSS, Daisy UI.
 - **Best Features**:
-  - Admins can control the agreements in the dashboard.
-  - Secure online rent payment processing.
-  - Admins can add, delete, and update the coupons.
+  - Admins can control agreements through the dashboard.  
+  - Secure online rent payment processing.  
+  - Admins can add, delete, and update coupons. 
+- **Other Features**:
+  - Tenants can view property details and payment history.  
+  - Secure communication channel between landlords and tenants.  
+  - Intuitive user interface for seamless navigation. 
  
 ## Admin Credentials
 Admin email: admin@tenantix.com <br />
