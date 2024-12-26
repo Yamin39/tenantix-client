@@ -14,6 +14,10 @@
   - Admins can control the agreements in the dashboard.
   - Secure online rent payment processing.
   - Admins can add, delete, and update the coupons.
+ 
+## Admin Credentials
+Admin email: admin@tenantix.com <br />
+Admin pass: 123456Aa
 
 ## Setup Process
 
