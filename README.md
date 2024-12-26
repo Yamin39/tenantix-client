@@ -19,6 +19,15 @@
 Admin email: admin@tenantix.com <br />
 Admin pass: 123456Aa
 
+## NPM Packages
+1. react-icons </br>  
+2. firebase </br>  
+3. react-router-dom </br>  
+4. tailwindcss </br>  
+5. daisyui </br>  
+6. react-hook-form </br>  
+7. stripe </br> 
+
 ## Setup Process
 
 To run the project locally, follow these steps:
